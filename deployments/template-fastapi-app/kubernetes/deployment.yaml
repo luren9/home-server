@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: template-fastapi-app
+
+spec:
+  replicas: 0
+  selector:
+    matchLabels:
+      app: template-fastapi-app
+  template:
+    metadata:
+      labels:
+        app: template-fastapi-app
+
+    spec:
+      securityContext:
+        runAsUser: 1005
+        runAsGroup: 1005
+        fsGroup: 1005
+
+      containers:
+        - name: template-fastapi-app
+          image:
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+              name: template-fastapi-app
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "256Mi"
+            limits:
+              cpu: "200m"
+              memory: "512Mi"
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 2  # Wait before first probe start time
+            failureThreshold: 3  # Amount of probe tries
+            periodSeconds: 30  # How often to run probe
+            timeoutSeconds: 2  # Probe try time
