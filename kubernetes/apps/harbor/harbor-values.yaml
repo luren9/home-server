@@ -1,0 +1,12 @@
+expose:
+  type: nodePort
+  tls:
+    enabled: false
+
+persistence:
+  enabled: true
+
+externalURL: http://harbor.local
+
+# Not set here for obvious security reasons! :)
+# harborAdminPassword:
