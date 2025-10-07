@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - deployment.yaml
+
+images:
+  - name: template-fastapi-app
+    newName: http://192.168.0.62:30002/library/template-fastapi-app
+    newTag:

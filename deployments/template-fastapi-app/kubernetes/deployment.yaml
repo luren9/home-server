@@ -21,7 +21,7 @@ spec:
 
       containers:
         - name: template-fastapi-app
-          image:
+          image: template-fastapi-app
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
