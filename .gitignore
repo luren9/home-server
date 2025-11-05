@@ -1,3 +1,9 @@
+# Custom specific files
 TODO.md
 TODO2.md
 server_pc_ip
+
+# Key stuff
+*.key
+*.crt
+*.pem

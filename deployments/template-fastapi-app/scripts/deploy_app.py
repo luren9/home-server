@@ -6,7 +6,7 @@ import shlex
 import argparse
 
 # Registry and path to push the docker image
-HARBOR_REGISTRY = "http://192.168.0.62:30002"
+HARBOR_REGISTRY = "192.168.0.62:30002"
 HARBOR_PATH = "library/template-fastapi-app"
 
 # Path from this scripts location to the docker context

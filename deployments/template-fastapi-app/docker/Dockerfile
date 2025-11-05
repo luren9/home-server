@@ -50,8 +50,3 @@ RUN chmod +x /entrypoint-local.sh
 # Run container as non-root user
 USER appuser
 ENTRYPOINT ["/entrypoint-local.sh"]
-
-
-
-
-
