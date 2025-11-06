@@ -17,3 +17,6 @@ externalURL: https://harbor.local:30003
 
 # Not set here for obvious security reasons! :)
 # harborAdminPassword:
+
+
+# Deprecated?!
