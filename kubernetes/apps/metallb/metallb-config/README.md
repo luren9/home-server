@@ -1,0 +1,1 @@
+External/self-made chart needed for creating resources for the created CRDs

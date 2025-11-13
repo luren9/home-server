@@ -4,3 +4,7 @@ operator:
   replicas: 1
 routingMode: tunnel
 tunnelProtocol: vxlan
+
+# Needed for metalLB to respond to L2 ARP requests.
+bpf:
+  hostLegacyRouting: true

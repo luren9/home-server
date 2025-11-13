@@ -12,6 +12,8 @@ repositories:
     url: https://helm.goharbor.io
   - name: cilium
     url: https://helm.cilium.io
+  - name: metallb
+    url: https://metallb.github.io/metallb
 
 releases:
   - name: cert-manager
@@ -42,3 +44,14 @@ releases:
     version: 1.18.2
     values:
       - ./cilium/values.yaml
+
+  - name: metallb
+    namespace: metallb-system
+    chart: metallb/metallb
+    version: 0.15.2
+    values:
+      - ./metallb/values.yaml
+
+  - name: metallb-config
+    namespace: metallb-system
+    chart: ./metallb/metallb-config

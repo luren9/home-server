@@ -1,0 +1,7 @@
+controller:
+  tolerations: []
+  nodeSelector: {}
+
+speaker:
+  tolerations: []
+  nodeSelector: {}
