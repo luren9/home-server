@@ -8,10 +8,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-      - webapp.local
+      - webapp.home
     secretName: webapp-tls
   rules:
-  - host: webapp.local
+  - host: webapp.home
     http:
       paths:
       - path: /
