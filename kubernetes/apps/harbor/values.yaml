@@ -1,14 +1,19 @@
 expose:
-  nodePort:
-    ports:
-      https:
-        port: 30003
+  type: ingress
+  ingress:
+    className: nginx
+    hosts:
+      core: harbor.home
+      notary: notary.harbor.home
+    annotations:
+      cert-manager.io/cluster-issuer: "my-ca-issuer"
   tls:
     certSource: secret
     enabled: true
     secret:
       secretName: harbor-tls
-  type: nodePort
-externalURL: http://harbor.local
+
+externalURL: https://harbor.home
+
 persistence:
   enabled: true
