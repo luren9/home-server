@@ -197,22 +197,23 @@ def main():
     print_kustomization_and_image_information(destination_and_tag_name)
 
     # Commands to commit and push kustomization hash to remote branch.
-    git_add_cmd = f"git add {PATH_TO_KUSTOMIZATION_FILE}"
-    git_commit_cmd = "git commit --amend --no-edit"
-    git_push_cmd = f"git push origin {CURRENT_WORKING_REMOTE_BRANCH}"
+    # This code only works if we have commited changed not yet pushed.
+    # git_add_cmd = f"git add {PATH_TO_KUSTOMIZATION_FILE}"
+    # git_commit_cmd = "git commit --amend --no-edit"
+    # git_push_cmd = f"git push origin {CURRENT_WORKING_REMOTE_BRANCH}"
 
-    print("Would you like to automatically perform the following commands: ")
-    print_colored(f"{git_add_cmd}\n{git_commit_cmd}\n{git_push_cmd}",
-                  color="yellow")
+    # print("Would you like to automatically perform the following commands: ")
+    # print_colored(f"{git_add_cmd}\n{git_commit_cmd}\n{git_push_cmd}",
+    #               color="yellow")
 
-    if prompt_user("Let script run git commands automatically? (yes/no)"):
-        run_cmd(git_add_cmd, print_cmd=True)
-        run_cmd(git_commit_cmd, print_cmd=True)
-        run_cmd(git_push_cmd, print_cmd=True)
+    # if prompt_user("Let script run git commands automatically? (yes/no)"):
+    #     run_cmd(git_add_cmd, print_cmd=True)
+    #     run_cmd(git_commit_cmd, print_cmd=True)
+    #     run_cmd(git_push_cmd, print_cmd=True)
 
-    else:
-        if not quiet_mode:
-            print_commit_tree_hash_reminder_information()
+    # else:
+    if not quiet_mode:
+        print_commit_tree_hash_reminder_information()
 
 
 if __name__ == "__main__":

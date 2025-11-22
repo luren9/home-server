@@ -6,5 +6,5 @@ resources:
 
 images:
   - name: template-fastapi-app
-    newName: http://192.168.0.62:30002/library/template-fastapi-app
-    newTag:
+    newName: http://harbor.home/library/template-fastapi-app
+    newTag: tree-a81d8a5944b434ff2fb4864583522cade50c8964
