@@ -6,7 +6,7 @@ import shlex
 import argparse
 
 # Registry and path to push the docker image
-HARBOR_REGISTRY = "192.168.0.62:30002"
+HARBOR_REGISTRY = "harbor.home"
 HARBOR_PATH = "library/template-fastapi-app"
 
 # Path from this scripts location to the docker context
@@ -15,22 +15,29 @@ PATH_TO_DOCKER_DIR = "../docker"
 # Path from this script to file which will house the pushed image´s tree hash.
 PATH_TO_KUSTOMIZATION_FILE = "../kubernetes/kustomization.yaml"
 
-# Remote branch where the amended & updated image´s tree hash will be and pushed
+# Branch where the updated image´s tree hash will be and pushed
 CURRENT_WORKING_REMOTE_BRANCH = "main"
 
 
-def prompt_user(prompt):
+def prompt_user(prompt: str):
     response = input(prompt).strip().lower()
     return response in ['yes', 'y']
 
 
-def print_colored(text, color, end='\n'):
-    colors = {'red': '\x1b[31m', 'green': '\x1b[32m', 'yellow': '\x1b[33m', 'blue': '\x1b[34m'}
+def print_colored(text: str, color: str, end: str = '\n'):
+    colors = {'red': '\x1b[31m',
+              'green': '\x1b[32m',
+              'yellow': '\x1b[33m',
+              'blue': '\x1b[34m'}
     reset = '\x1b[0m'
     sys.stdout.write(colors.get(color, '') + text + reset + end)
 
 
-def run_cmd(command, capture_output=False, check=True, print_cmd=False, shell=False):
+def run_cmd(command: str,
+            capture_output: bool = False,
+            check: bool = True,
+            print_cmd: bool = False,
+            shell: bool = False):
     """
     Runs a command using subprocess.run.
 
@@ -68,36 +75,47 @@ def print_script_information():
     print("This is a simple helper script that helps with building and pushing an image of the application to harbor.")
     print("")
 
+
 def print_dirty_image_warning():
-    print("WARNING - It seems like you want to build a Docker image on code which has uncommitted.")
-    print("The code in the uncommitted changes will be used in the docker image,")
-    print("but unless you commit and push this uncommited code the changes wont be visible in the repo.")
-    print("This becomes problematic as there would be a mismatch in the 'running' and the 'stored' code.")
-    print("If you choose to continue, the image will be marked as '-dirty' on harbor")
+    print("WARNING - It seems like you want to build a Docker image on code "
+          "which has uncommitted.")
+    print("The code in the uncommitted changes will be used in the docker "
+          "image,")
+    print("but unless you commit and push this uncommited code the changes "
+          "wont be visible in the repo.")
+    print("This becomes problematic as there would be a mismatch in the "
+          "'running' and the 'stored' code.")
+    print("If you choose to continue, the image will be marked as '-dirty' on "
+          "harbor")
 
 
 def print_harbor_login_information():
     print("\n" * 3)
     print("Pushing the generated docker image to harbor failed.")
-    print("The script tried logging you in automatically but that failed aswell.")
-    print("If the error is regarding beeing denied due to permissions, you may have to log in to harbor again.")
+    print("The script tried logging you in automatically but that failed "
+          "aswell.")
+    print("If the error is regarding beeing denied due to permissions, you "
+          "may have to log in to harbor again.")
     print("You can do so like using this command:")
     print(f"docker login {HARBOR_REGISTRY}")
     print("Then enter your credentials as you would in harbor.")
 
 
-def print_kustomization_and_image_information(destination_and_tag_name):
+def print_kustomization_and_image_information(destination_and_tag_name: str):
     print("Built images and pushed to harbor")
     print("image pushed: " + destination_and_tag_name)
     print("The new tag has been put in the kustomization file")
     print("\n\n")
-    print("The new tag in the kustomization file must now be commited and pushed.")
+    print("The new tag in the kustomization file must now be commited and "
+          "pushed.")
 
 
 def print_commit_tree_hash_reminder_information():
     print("\n" * 2)
-    print("! Now commit and push the modified kustomization.yaml file (important)")
-    print(" Important beacuse we want to be able to track which image is currently in use through the repository.")
+    print("! Now commit and push the modified kustomization.yaml file "
+          "(important)")
+    print(" Important beacuse we want to be able to track which image is "
+          "currently in use through the repository.")
     print("")
 
 
@@ -130,7 +148,8 @@ def main():
 
     destination_and_tag_name = f"{HARBOR_REGISTRY}/{HARBOR_PATH}:{tag}"
 
-    author_email, _ = run_cmd("git log -1 --pretty=format:%ae", capture_output=True)
+    author_email, _ = run_cmd("git log -1 --pretty=format:%ae",
+                              capture_output=True)
 
     build_command = (
         f"docker build "
@@ -150,9 +169,10 @@ def main():
         error_message = str(e)
         stderr = e.stderr.decode()
         print("stderr output: ", stderr)
-        if stderr and 'unauthorized: unauthorized to access repository' in stderr:
+        if stderr and 'unauthorized: unauthorized to access repo' in stderr:
             try:
-                print("There was an error regarding acces to harbor. Lets try signing in...")
+                print("There was an error regarding acces to harbor. Lets try "
+                      "signing in...")
                 print("please enter your harbor credentials in the prompts:")
                 run_cmd(f"docker login {HARBOR_REGISTRY}", check=True,
                         print_cmd=True)
@@ -176,7 +196,6 @@ def main():
 
     print_kustomization_and_image_information(destination_and_tag_name)
 
-
     # Commands to commit and push kustomization hash to remote branch.
     git_add_cmd = f"git add {PATH_TO_KUSTOMIZATION_FILE}"
     git_commit_cmd = "git commit --amend --no-edit"
@@ -186,12 +205,10 @@ def main():
     print_colored(f"{git_add_cmd}\n{git_commit_cmd}\n{git_push_cmd}",
                   color="yellow")
 
-
-    if prompt_user("Let script run these git commands automatically? (yes/no)"):
+    if prompt_user("Let script run git commands automatically? (yes/no)"):
         run_cmd(git_add_cmd, print_cmd=True)
         run_cmd(git_commit_cmd, print_cmd=True)
         run_cmd(git_push_cmd, print_cmd=True)
-
 
     else:
         if not quiet_mode:
