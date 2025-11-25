@@ -3,8 +3,10 @@ kind: Kustomization
 
 resources:
   - deployment.yaml
+  - ingress.yaml
+  - service.yaml
 
 images:
   - name: template-fastapi-app
-    newName: http://harbor.home/library/template-fastapi-app
+    newName: harbor.home/library/template-fastapi-app
     newTag: tree-a81d8a5944b434ff2fb4864583522cade50c8964

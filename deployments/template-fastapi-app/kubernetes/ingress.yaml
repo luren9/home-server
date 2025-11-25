@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: template-fastapi-app-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "my-ca-issuer"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+      - template-fastapi-app.home
+    secretName: template-fastapi-app-tls
+  rules:
+  - host: template-fastapi-app.home
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: template-fastapi-app
+            port:
+              number: 5000
