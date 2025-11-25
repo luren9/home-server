@@ -9,4 +9,4 @@ resources:
 images:
   - name: template-fastapi-app
     newName: harbor.home/library/template-fastapi-app
-    newTag: tree-a81d8a5944b434ff2fb4864583522cade50c8964
+    newTag: tree-dd6c46b3f5cb47f627368c06f215a6dac17fa832
