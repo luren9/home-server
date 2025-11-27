@@ -13,4 +13,5 @@ server_pc_ip
 .obsidian/workspace-mobile.json
 .obsidian/cache/
 .obsidian/global.json
-.obsidian/plugins/*/data.json
+.obsidian/hotkeys.json
+.obsidian/plugins/
