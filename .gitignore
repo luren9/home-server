@@ -7,3 +7,10 @@ server_pc_ip
 *.key
 *.crt
 *.pem
+
+# User-specific Obsidian state (This could probably be improved alot)
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
+.obsidian/global.json
+.obsidian/plugins/*/data.json
