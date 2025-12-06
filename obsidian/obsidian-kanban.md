@@ -18,8 +18,8 @@ kanban-plugin: board
 
 ## To Do
 
-- [ ] Implement [[ELK-stack]]
 - [ ] Explore UIs for [[cert-manager]]
+- [ ] Implement [[ELK-stack]]
 - [ ] Fix [[cilium]] and [[harbor]] helm-version updating everytime i apply [[helmfile]]
 - [ ] Add [[datree]] to strictly enforce secure maifests and policies
 - [ ] Look in to local-path-storage pvc-tester mass-restarts
@@ -29,7 +29,7 @@ kanban-plugin: board
 
 ## In Progress
 
-- [ ] Terraform + AWS for cluster-bootstrap artifacts & app-data backups. Can argo handle the cloud calls?
+- [ ] Terraform + AWS for cluster-bootstrap artifacts & app-data backups. Can argo handle the cloud calls? [[Backup-cluster]]
 - [ ] Setup [[ArgoCD]]
 
 
