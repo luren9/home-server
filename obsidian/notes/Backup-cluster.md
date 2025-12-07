@@ -27,9 +27,14 @@ Hmm yeah okay we will go with Velero.
 
 So the restoration workflow would be:
 
-1.  Apply internal kubernetes manifests in `/kuberentes` folder. 
-2.  Apply helmfile for all external deployments.
-3.  Run sync on ArgoCD to apply all internal deployments
-4.  Run Velero restore
+1. Rebuild cluster
+2. Install Velero
+3.  Apply internal kubernetes manifests in `/kuberentes` folder. 
+4. Apply helmfile for all external deployments. (Most importantly ArgoCD & Harbor)
+5. Run `velero restore` ONLY for Harbor namespace
+6. Wait until Harbor pods come up with restored images
+7. Run full GitOps/ArgoCD sync for all internal deployments
+8. Run Full-Scale Velero restore (excluding Harbor that already was restored)
 
 +Very cool here is that Velero is plug-n-play with AWS and knows how to push there right away!
+

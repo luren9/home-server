@@ -25,6 +25,7 @@ kanban-plugin: board
 - [ ] Look in to local-path-storage pvc-tester mass-restarts
 - [ ] See if there are any good Vscode extensions for working with helm, especially to find which chart values can be overidden
 - [ ] Add tool for calculating power consumption & cost
+- [ ] Move all `README.md` files onto obsidian notes with proper naming
 
 
 ## In Progress
