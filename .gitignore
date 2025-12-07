@@ -15,3 +15,17 @@ server_pc_ip
 .obsidian/global.json
 .obsidian/hotkeys.json
 .obsidian/plugins/
+
+# Terraform stuff
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfvars
+*.tfvars.json
+.terraform/
+.terraform.lock.hcl
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+*.plan
