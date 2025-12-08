@@ -11,11 +11,12 @@ terraform {
 provider "aws" {
   region = var.aws_region
 }
-
-# --- S3 Bucket ---
+# ------------------------------------------------------------------------------
+# S3 Bucket
+# ------------------------------------------------------------------------------
 resource "aws_s3_bucket" "velero" {
   bucket = var.velero_bucket_name
-  tags   = var.tags
+  tags   = var.velero_bucket_tags
 }
 
 resource "aws_s3_bucket_versioning" "velero" {
@@ -27,6 +28,7 @@ resource "aws_s3_bucket_versioning" "velero" {
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "velero" {
   bucket = aws_s3_bucket.velero.id
+
   rule {
     apply_server_side_encryption_by_default {
       sse_algorithm = "AES256"
@@ -56,19 +58,25 @@ resource "aws_s3_bucket_lifecycle_configuration" "velero" {
   }
 }
 
-# --- IAM User for Velero ---
+# ------------------------------------------------------------------------------
+# Minimal IAM Bucket User for Velero
+# ------------------------------------------------------------------------------
+
+# Create the IAM user
 resource "aws_iam_user" "velero" {
   name = "velero-backup-user"
-  tags = var.tags
+  tags = var.velero_iam_user_tags
 }
 
+# Create access keys for the IAM user
 resource "aws_iam_access_key" "velero" {
   user = aws_iam_user.velero.name
 }
 
-# Policy granting minimal S3 access
+# Add Policy granting minimal S3 access (Velero specific and compatible)
 data "aws_iam_policy_document" "velero_s3_policy" {
   statement {
+    effect = "Allow"
     actions = [
       "s3:ListBucket"
     ]
@@ -78,10 +86,13 @@ data "aws_iam_policy_document" "velero_s3_policy" {
   }
 
   statement {
+    effect = "Allow"
     actions = [
       "s3:GetObject",
       "s3:PutObject",
-      "s3:DeleteObject"
+      "s3:DeleteObject",
+      "s3:AbortMultipartUpload",
+      "s3:ListMultipartUploadParts"
     ]
     resources = [
       "${aws_s3_bucket.velero.arn}/*"

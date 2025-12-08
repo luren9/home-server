@@ -4,13 +4,13 @@ output "velero_bucket_name" {
 }
 
 output "velero_access_key_id" {
-  description = "Access key for Velero"
+  description = "Access key for Velero (like a username)"
   value       = aws_iam_access_key.velero.id
   sensitive   = true
 }
 
 output "velero_secret_access_key" {
-  description = "Secret key for Velero"
+  description = "Secret key for Velero (like a password)"
   value       = aws_iam_access_key.velero.secret
   sensitive   = true
 }
