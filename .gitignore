@@ -8,6 +8,8 @@ server_pc_ip
 *.crt
 *.pem
 
+*credentials*
+
 # User-specific Obsidian state (This could probably be improved alot)
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json

@@ -14,6 +14,10 @@ repositories:
     url: https://helm.cilium.io
   - name: metallb
     url: https://metallb.github.io/metallb
+  - name: vmware-tanzu
+    url: https://vmware-tanzu.github.io/helm-charts
+
+
 
 releases:
   - name: cert-manager
@@ -55,3 +59,12 @@ releases:
   - name: metallb-config
     namespace: metallb-system
     chart: ./metallb/metallb-config
+
+  - name: velero
+    namespace: velero
+    chart: vmware-tanzu/velero
+    version: 11.2.0
+    values:
+      - ./velero/values.yaml
+    secrets:
+      - ./velero/secret-values.yaml

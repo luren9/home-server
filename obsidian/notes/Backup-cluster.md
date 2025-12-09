@@ -22,19 +22,23 @@ Here is the requirements for the cluster backups i will setup:
 * Each deployment and app is ephemeral, so their states do not need to be backed up. Only data in PVC's need backing up.
 
 
-
-Hmm yeah okay we will go with Velero.
+## Velero
+To meet our needs the choice is to go with Velero.
+Velero will essentially regularly take snapshots of every pvc in the cluster and send them to an AWS-S3 bucket.
 
 So the restoration workflow would be:
-
 1. Rebuild cluster
-2. Install Velero
-3.  Apply internal kubernetes manifests in `/kuberentes` folder. 
-4. Apply helmfile for all external deployments. (Most importantly ArgoCD & Harbor)
+2.  Apply internal kubernetes manifests in `/kuberentes` folder. 
+3. Manually add the AWS-S3 bucket credentialls into the file in `/kubernetes/apps/velero/velero-credentials` like so: 
+   ```yaml 
+	   aws_access_key_id = <ACCES_KEY_ID>
+	   aws_secret_access_key = <ACCES_KEY>
+     ```
+     If lost, they may be found on the AWS website.
+4. Apply helmfile for all external deployments. (Most importantly ArgoCD & Harbor & Velero)
 5. Run `velero restore` ONLY for Harbor namespace
 6. Wait until Harbor pods come up with restored images
 7. Run full GitOps/ArgoCD sync for all internal deployments
 8. Run Full-Scale Velero restore (excluding Harbor that already was restored)
 
-+Very cool here is that Velero is plug-n-play with AWS and knows how to push there right away!
 
