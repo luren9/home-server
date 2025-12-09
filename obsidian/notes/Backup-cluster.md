@@ -32,8 +32,9 @@ So the restoration workflow would be:
 3. Create the Velero namespace `kubectl create namespace velero`
 4. Find and note down the AWS S3 bucket credentials. If lost, they may be found on the AWS website. These are the only secrets/keys that have to be manually restored. All other secrets are encrypted within the backups.
 5. Uncomment the text under the `cloud` section and manually add the credentials in the marked spots in the file `./kubernetes/apps/velero/velero-credentials-secret.yaml`. Then apply the secret, like so `kubectl apply -f <SECRET_TEMPLATE_FILEPATh>`.
-   **NOTE** -> Make sure theese credentials do not get tracked by git.
-6. Apply helmfile for all external deployments. (Most importantly ArgoCD & Harbor & Velero)
+   **NOTE** -> Make sure these credentials do not get tracked by git.
+6. Apply `helmfile apply` at the root of the `kubernetes/apps` folder. This will install every external deployments manifest and apply them. 
+   **NOTE** -> (Most importantly ArgoCD, Harbor & Velero, they are needed to restore internal deployments as well)
 7. Run `velero restore` ONLY for Harbor namespace
 8. Wait until Harbor pods come up with restored images
 9. Run full GitOps/ArgoCD sync for all internal deployments
