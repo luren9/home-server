@@ -8,7 +8,8 @@ server_pc_ip
 *.crt
 *.pem
 
-*credentials*
+# Ignore changes made to velero credentials secret file
+velero-credentials-secret.yaml
 
 # User-specific Obsidian state (This could probably be improved alot)
 .obsidian/workspace.json
