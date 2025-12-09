@@ -28,6 +28,7 @@ kanban-plugin: board
 - [ ] See if there are any good Vscode extensions for working with helm, especially to find which chart values can be overidden
 - [ ] Add tool for calculating power consumption & cost
 - [ ] Move all `README.md` files onto obsidian notes with proper naming
+- [ ] Give root-level `README.md` a major makeover, make it cool and explain obsidian usage.
 
 
 ## In Progress
