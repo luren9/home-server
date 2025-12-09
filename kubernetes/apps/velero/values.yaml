@@ -1,42 +1,28 @@
 configuration:
-  provider: aws
   backupStorageLocation:
-    name: default
-    bucket: "velero-cluster-backup-s3-bucket" # Is this correct?
+  - name: default
+    provider: aws
+    bucket: "velero-cluster-backup-s3-bucket"
     config:
       region: "us-east-1"
-      # s3Url: "https://s3.<AWS_REGION>.amazonaws.com"
-  # volumeSnapshotLocation: # Can i remove this?
-  #   name: default
-  #   provider: aws
-  #   config: {}
+  # Enable filesystem backups for volumes by default (auto-marks ALL PVCs)
+  defaultVolumesToFsBackup: true
 
 credentials:
   # This secret must be created manually before installing Velero
   name: cloud-credentials
 
-# Needed as we have file-path-storage provisioner
-features:
-  enableNodeAgent: true
-
-# Restrict default backup to PVCs only
-backup:
-  defaultVolumesToFsBackup: true   # Auto marks ALL PVCs to be backed-up
-
-# Node-agent DaemonSet configuration
-nodeAgent:
-  podVolumePath: /var/lib/kubelet/pods
-
-# Needed for local-path-storage
-# Ensures host file paths accessible to node-agent
-securityContext:
+# We use node-agent because we rely on file-path-storage provisioner
+deployNodeAgent: true
+podSecurityContext:
   fsGroup: 1001
 
-# Restore config
-# pvc restore ordering, owner refs, etc.
-extraArgs:
-  - "--default-volumes-to-fs-backup=true"
+nodeAgent:
+  # Ensure host file paths are accessible to node-agent
+  podSecurityContext:
+    runAsUser: 0
+    fsGroup: 1001
 
-# Do we need this?
+# Disabled as our file-path-storage provisioner does not support snapshots
 snapshotsEnabled: false
-upgradeCRDs: true
+
