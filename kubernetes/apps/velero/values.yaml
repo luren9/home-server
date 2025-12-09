@@ -1,0 +1,47 @@
+configuration:
+  provider: aws
+  backupStorageLocation:
+    name: default
+    bucket: "velero-cluster-backup-s3-bucket" # Is this correct?
+    prefix: "velero"
+    config:
+      region: "us-east-1"
+      # s3Url: "https://s3.<AWS_REGION>.amazonaws.com"
+  # volumeSnapshotLocation: # Can i remove this?
+  #   name: default
+  #   provider: aws
+  #   config: {}
+
+credentials:
+  secretContents:
+    cloud: ""   # Provided by helmfile secrets template
+
+# Enable restic-style backups (node-agent)
+features:
+  enableNodeAgent: true
+
+# Velero server options
+initContainers: []
+deployRestic: false     # deprecated - DO NOT enable (node-agent replaces it)
+
+# Restrict default backup to PVCs only
+backup:
+  defaultVolumesToFsBackup: true   # Auto marks ALL PVCs to be backed-up
+
+# Node-agent DaemonSet configuration
+nodeAgent:
+  podVolumePath: /var/lib/kubelet/pods
+
+# Needed for local-path-storage
+# Ensures host file paths accessible to node-agent
+securityContext:
+  fsGroup: 1001
+
+# Restore config
+# pvc restore ordering, owner refs, etc.
+extraArgs:
+  - "--default-volumes-to-fs-backup=true"
+
+# Additional recommended settings
+snapshotsEnabled: false
+upgradeCRDs: true
