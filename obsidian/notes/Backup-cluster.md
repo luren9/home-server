@@ -29,16 +29,13 @@ Velero will essentially regularly take snapshots of every pvc in the cluster and
 So the restoration workflow would be:
 1. Rebuild cluster
 2.  Apply internal kubernetes manifests in `/kuberentes` folder. 
-3. Manually add the AWS-S3 bucket credentialls into the file in `/kubernetes/apps/velero/velero-credentials` like so: 
-   ```yaml 
-	   aws_access_key_id = <ACCES_KEY_ID>
-	   aws_secret_access_key = <ACCES_KEY>
-     ```
-     If lost, they may be found on the AWS website.
-4. Apply helmfile for all external deployments. (Most importantly ArgoCD & Harbor & Velero)
-5. Run `velero restore` ONLY for Harbor namespace
-6. Wait until Harbor pods come up with restored images
-7. Run full GitOps/ArgoCD sync for all internal deployments
-8. Run Full-Scale Velero restore (excluding Harbor that already was restored)
-
+3. Create the Velero namespace `kubectl create namespace velero`
+4. Find and note down the AWS S3 bucket credentials. If lost, they may be found on the AWS website. These are the only secrets/keys that have to be manually restored. All other secrets are encrypted within the backups.
+5. Uncomment the text under the `cloud` section and manually add the credentials in the marked spots in the file `./kubernetes/apps/velero/velero-credentials-secret.yaml`. Then apply the secret, like so `kubectl apply -f <SECRET_TEMPLATE_FILEPATh>`.
+   **NOTE** -> Make sure theese credentials do not get tracked by git.
+6. Apply helmfile for all external deployments. (Most importantly ArgoCD & Harbor & Velero)
+7. Run `velero restore` ONLY for Harbor namespace
+8. Wait until Harbor pods come up with restored images
+9. Run full GitOps/ArgoCD sync for all internal deployments
+10. Run Full-Scale Velero restore (excluding Harbor that already was restored)
 

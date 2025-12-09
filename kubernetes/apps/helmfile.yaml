@@ -66,5 +66,3 @@ releases:
     version: 11.2.0
     values:
       - ./velero/values.yaml
-    secrets:
-      - ./velero/secret-values.yaml

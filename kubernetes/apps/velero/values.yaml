@@ -3,7 +3,6 @@ configuration:
   backupStorageLocation:
     name: default
     bucket: "velero-cluster-backup-s3-bucket" # Is this correct?
-    prefix: "velero"
     config:
       region: "us-east-1"
       # s3Url: "https://s3.<AWS_REGION>.amazonaws.com"
@@ -13,16 +12,12 @@ configuration:
   #   config: {}
 
 credentials:
-  secretContents:
-    cloud: ""   # Provided by helmfile secrets template
+  # This secret must be created manually before installing Velero
+  name: cloud-credentials
 
-# Enable restic-style backups (node-agent)
+# Needed as we have file-path-storage provisioner
 features:
   enableNodeAgent: true
-
-# Velero server options
-initContainers: []
-deployRestic: false     # deprecated - DO NOT enable (node-agent replaces it)
 
 # Restrict default backup to PVCs only
 backup:
@@ -42,6 +37,6 @@ securityContext:
 extraArgs:
   - "--default-volumes-to-fs-backup=true"
 
-# Additional recommended settings
+# Do we need this?
 snapshotsEnabled: false
 upgradeCRDs: true
