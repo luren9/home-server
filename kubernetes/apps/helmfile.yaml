@@ -66,3 +66,6 @@ releases:
     version: 11.2.0
     values:
       - ./velero/values.yaml
+    set:
+      - name: upgradeCRDs
+        value: "true"

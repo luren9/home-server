@@ -1,16 +1,21 @@
 configuration:
   backupStorageLocation:
-  - name: default
+  - name: velero-cluster-backup
     provider: aws
     bucket: "velero-cluster-backup-s3-bucket"
     config:
       region: "us-east-1"
+    credential:
+      name: cloud-credentials
+      key: cloud
   # Enable filesystem backups for volumes by default (auto-marks ALL PVCs)
   defaultVolumesToFsBackup: true
 
 credentials:
   # This secret must be created manually before installing Velero
+  useSecret: true
   name: cloud-credentials
+  existingSecret: cloud-credentials
 
 # We use node-agent because we rely on file-path-storage provisioner
 deployNodeAgent: true
@@ -26,3 +31,7 @@ nodeAgent:
 # Disabled as our file-path-storage provisioner does not support snapshots
 snapshotsEnabled: false
 
+kubectl:
+  image:
+    repository: bitnamilegacy/kubectl
+    tag: "1.16.15"

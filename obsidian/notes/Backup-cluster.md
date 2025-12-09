@@ -40,3 +40,6 @@ So the restoration workflow would be:
 9. Run full GitOps/ArgoCD sync for all internal deployments
 10. Run Full-Scale Velero restore (excluding Harbor that already was restored)
 
+
+
+S3 + velero setup now. All left is to try doing some backups.

@@ -14,6 +14,8 @@ kanban-plugin: board
 - [ ] Ingress-nginx deprecated?
 - [ ] Terraform + AWS Route 53 to manage DNS for home cluster Maybe only for apps in prod ns?
 - [ ] Terraform + AWS for deploying AI cluster watcher
+- [ ] Migrate from [[bitnamilegacy]] docker image repository. Repository is fully deprecated.
+- [ ] Add [[code-file linking]] in obsidian.
 
 
 ## To Do
