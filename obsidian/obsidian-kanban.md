@@ -22,7 +22,7 @@ kanban-plugin: board
 
 ## To Do
 
-- [ ] Implement [[ELK-stack]]
+- [ ] Implement [[ELK-stack]] or maybe the LGTM stack?
 - [ ] Add [[datree]] to strictly enforce secure maifests and policies
 - [ ] Look in to local-path-storage pvc-tester mass-restarts
 - [ ] Add tool for calculating power consumption & cost
