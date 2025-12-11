@@ -1,1 +1,3 @@
-We need ArgoCD to allow for automatic deployments. Where all we need to do is push an image to [[harbor]], then merge that code to the cloud repo, then we can have ArgoCD watch the cloud code repo for changes and have it automatically reconcile/sync applications as per out configurations. Of course, we can still choose to leave it as a manual single-click delivery system through Argos's UI.
+We need ArgoCD to allow for automatic deployments, or rather to work the truly [[GitOps]] way. Where all we need to do is push an image to [[harbor]], then merge that code to the cloud repo, then we can have ArgoCD watch the cloud code repo for changes and have it automatically reconcile/sync applications as per out configurations. Of course, we can still choose to leave it as a manual single-click delivery system through Argos's UI.
+
+ArgoCD will also replace [[helmfile]] in the near future.

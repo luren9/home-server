@@ -23,4 +23,4 @@ Either way, seems this thread talks about this exact issue, and it seems its not
 https://github.com/vmware-tanzu/helm-charts/issues/698
 
 ## Problem
-So if my guess is right and i just hit an older cached image from bitnamilegacy that i have had from before, then i wouldn't be able to restore my kubernetes cluster properly. This has to be looked in to more though. Oddly, both 
+So if my guess is right and i just hit an older cached image from bitnamilegacy that i have had from before, then i wouldn't be able to restore my kubernetes cluster properly. This has to be looked in to more though.

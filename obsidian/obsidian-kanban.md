@@ -7,8 +7,10 @@ kanban-plugin: board
 ## Backlog
 
 - [ ] Implement/look in to [[n8n]]
+- [ ] Explore UIs for [[cert-manager]]
 - [ ] Limit [[helm]] apply usage strictly to [[helmfile]] files
 - [ ] Selfhost [[DNS]] to avoid mapping each ingress-name to k8s LB-IP
+- [ ] See if there are any good Vscode extensions for working with helm, especially to find which chart values can be overidden
 - [ ] Add [[ansible]] playbook for full enviroment setup
 - [ ] Look at some cool [[tools]]
 - [ ] Ingress-nginx deprecated?
@@ -20,15 +22,13 @@ kanban-plugin: board
 
 ## To Do
 
-- [ ] Explore UIs for [[cert-manager]]
 - [ ] Implement [[ELK-stack]]
-- [ ] Fix [[cilium]] and [[harbor]] helm-version updating everytime i apply [[helmfile]]
 - [ ] Add [[datree]] to strictly enforce secure maifests and policies
 - [ ] Look in to local-path-storage pvc-tester mass-restarts
-- [ ] See if there are any good Vscode extensions for working with helm, especially to find which chart values can be overidden
 - [ ] Add tool for calculating power consumption & cost
 - [ ] Move all `README.md` files onto obsidian notes with proper naming
 - [ ] Give root-level `README.md` a major makeover, make it cool and explain obsidian usage.
+- [ ] Move from using [[helmfile]] to argoCD to mange helm.
 
 
 ## In Progress
@@ -40,6 +40,7 @@ kanban-plugin: board
 ## Done
 
 **Complete**
+- [x] *CANCELLED (we will move away from helmfile to ArgoCD, this will fix the issue)* Fix [[cilium]] and [[harbor]] helm-version updating everytime i apply [[helmfile]]
 
 
 

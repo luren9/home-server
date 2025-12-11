@@ -1,0 +1,2 @@
+We currently use helmfile. It is very poorly supported and it is built for a human-operator workflow, i.e not the GitOps way.
+Instead, we will use the more modern and better [[ArgoCD]] flow which supports working with helm charts out of the box. With the ArgoCD flow, a human operator CANT even apply anything without using the Argo operator. This is really good and what we want, true [[GitOps]] where there are no human operators.
