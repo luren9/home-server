@@ -26,6 +26,10 @@ Here is the requirements for the cluster backups i will setup:
 To meet our needs the choice is to go with Velero.
 Velero will essentially regularly take snapshots of every pvc in the cluster and send them to an AWS-S3 bucket.
 
+Velero will only be backing up pvcs and secrets. Everything else will have to be rebuilt from the declarative manifests - the GitOps way. This means that each disaster recovery will also be a "rebuild" of the entire cluster, which is good to ensure that any odd drift gets removed. For this DR process to be less scary, a good process is to try rebuilding the entire cluster every so often, maybe once every year.
+
+Velero will only back up `PersistentVolumeClaim` , `Secret`, `ConfigMap`
+
 So the restoration workflow would be:
 1. Rebuild cluster
 2.  Apply internal kubernetes manifests in `/kuberentes` folder. 
@@ -43,3 +47,12 @@ So the restoration workflow would be:
 
 
 S3 + velero setup now. All left is to try doing some backups.
+
+
+Ran this test:
+`velero backup create pvc-only-backup --include-resources persistentvolumeclaims,persistentvolumes --include-namespaces velero-test`
+
+
+Then i tried restoring it like:
+`velero restore create restore-pvc-only --from-backup pvc-only-backup`
+But it seems that velero doesnt want to overwrite my existing pvc... I need to look in to it more

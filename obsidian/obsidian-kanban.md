@@ -33,7 +33,7 @@ kanban-plugin: board
 
 ## In Progress
 
-- [ ] Terraform + AWS for cluster-bootstrap artifacts & app-data backups. Can argo handle the cloud calls? [[Backup-cluster]]
+- [ ] Terraform, AWS & Velero for cluster backups/disaster recovery. [[Backup-cluster]]
 - [ ] Setup [[ArgoCD]]
 
 

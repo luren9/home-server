@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-writer
+  namespace: velero-test
+spec:
+  containers:
+    - name: app
+      image: busybox
+      command: ["/bin/sh", "-c"]
+      args:
+        - |
+          echo "Hello Velero!" > /data/hello.txt;
+          sleep 3600
+      volumeMounts:
+        - mountPath: /data
+          name: testdata
+  volumes:
+    - name: testdata
+      persistentVolumeClaim:
+        claimName: test-pvc
