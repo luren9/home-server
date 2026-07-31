@@ -6,6 +6,8 @@ kanban-plugin: board
 
 ## Backlog
 
+- [ ] Add [[datree]] to strictly enforce secure maifests and policies
+- [ ] Implement [[ELK-stack]] or maybe the LGTM or LOKI stack?
 - [ ] Implement/look in to [[n8n]]
 - [ ] Explore UIs for [[cert-manager]]
 - [ ] Limit [[helm]] apply usage strictly to [[helmfile]] files
@@ -27,13 +29,14 @@ kanban-plugin: board
 
 ## To Do
 
-- [ ] Implement [[ELK-stack]] or maybe the LGTM stack?
-- [ ] Add [[datree]] to strictly enforce secure maifests and policies
 - [ ] Look in to local-path-storage pvc-tester mass-restarts
 - [ ] Add tool for calculating power consumption & cost
 - [ ] Move all `README.md` files onto obsidian notes with proper naming
 - [ ] Give root-level `README.md` a major makeover, make it cool and explain obsidian usage.
-- [ ] Move from using [[helmfile]] to argoCD to mange helm.
+- [ ] Add argocd application for syncing argocd application manifests. Should maybe live in the argocd bootstrap folder.
+	Add to readme that this needs to be manually applied once on server setup
+- [ ] Setup GitLab CE or something similar - self hosted repo yes sir.
+	Then set up push-mirroring to github + description of where development is happening on github
 
 
 ## In Progress
@@ -46,6 +49,7 @@ kanban-plugin: board
 **Complete**
 - [x] Setup [[ArgoCD]]
 - [x] *CANCELLED (we will move away from helmfile to ArgoCD, this will fix the issue)* Fix [[cilium]] and [[harbor]] helm-version updating everytime i apply [[helmfile]]
+- [x] Move from using [[helmfile]] to argoCD to mange helm.
 
 
 
