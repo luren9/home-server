@@ -18,6 +18,7 @@ kanban-plugin: board
 - [ ] Terraform + AWS for deploying AI cluster watcher
 - [ ] Migrate from [[bitnamilegacy]] docker image repository. Repository is fully deprecated.
 - [ ] Add [[code-file linking]] in obsidian.
+- [ ] Improve ArgoCD security (user accounts and so on)
 
 
 ## To Do
@@ -34,12 +35,12 @@ kanban-plugin: board
 ## In Progress
 
 - [ ] Terraform, AWS & Velero for cluster backups/disaster recovery. [[Backup-cluster]]
-- [ ] Setup [[ArgoCD]]
 
 
 ## Done
 
 **Complete**
+- [x] Setup [[ArgoCD]]
 - [x] *CANCELLED (we will move away from helmfile to ArgoCD, this will fix the issue)* Fix [[cilium]] and [[harbor]] helm-version updating everytime i apply [[helmfile]]
 
 
