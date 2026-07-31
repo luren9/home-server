@@ -29,3 +29,36 @@ spec:
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
+
+    # Snippet taken from
+  # https://docs.cilium.io/en/latest/configuration/argocd-issues/
+  ignoreDifferences:
+  - group: ""
+    kind: ConfigMap
+    name: hubble-ca-cert
+    namespace: kube-system
+    jsonPointers:
+    - /data/ca.crt
+  - group: ""
+    kind: Secret
+    name: hubble-relay-client-certs
+    namespace: kube-system
+    jsonPointers:
+    - /data/ca.crt
+    - /data/tls.crt
+    - /data/tls.key
+  - group: ""
+    kind: Secret
+    name: hubble-server-certs
+    namespace: kube-system
+    jsonPointers:
+    - /data/ca.crt
+    - /data/tls.crt
+    - /data/tls.key
+  - group: ""
+    kind: Secret
+    name: cilium-ca
+    namespace: kube-system
+    jsonPointers:
+      - /data/ca.crt
+      - /data/ca.key
