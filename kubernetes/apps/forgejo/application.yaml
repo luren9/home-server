@@ -1,0 +1,43 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+
+metadata:
+  name: forgejo
+  namespace: argocd
+
+spec:
+  project: default
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: forgejo
+
+  sources:
+    - repoURL: oci://code.forgejo.org/forgejo-helm/forgejo
+      chart: forgejo
+      targetRevision: "17.1.4"
+
+      helm:
+        releaseName: forgejo
+        valueFiles:
+          - $values/kubernetes/apps/forgejo/values.yaml
+
+    - repoURL: https://github.com/luren9/home-server.git
+      targetRevision: main
+      ref: values
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+    syncOptions:
+      - CreateNamespace=true
+
+  # ignoreDifferences:
+  # - group: ""
+  #   kind: Secret
+  #   name: something
+  #   namespace: forgejo
+  #   jsonPointers:
+  #   - /data/secret

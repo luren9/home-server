@@ -1,0 +1,65 @@
+replicaCount: 1
+
+ingress:
+  enabled: true
+  className: nginx
+
+  annotations:
+    cert-manager.io/cluster-issuer: my-ca-issuer
+
+  hosts:
+    - host: forgejo.home
+      paths:
+        - path: /
+          pathType: Prefix
+
+  tls:
+    - secretName: forgejo-tls
+      hosts:
+        - forgejo.home
+
+persistence:
+  enabled: true
+  size: 20Gi
+
+gitea:
+  admin:
+    username: admin
+    password: change-me
+    email: admin@home.local
+
+  config:
+    service:
+      DISABLE_REGISTRATION: true
+      REQUIRE_SIGNIN_VIEW: true
+
+    security:
+      INSTALL_LOCK: true
+
+    repository:
+      DEFAULT_BRANCH: main
+
+    ui:
+      DEFAULT_THEME: forgejo-auto
+
+    actions:
+      ENABLED: true
+
+    packages:
+      ENABLED: true
+
+postgresql:
+  enabled: true
+
+valkey:
+  enabled: true
+
+# TODO add ssh
+# service:
+#   ssh:
+#     enabled: true
+#     type: LoadBalancer
+#     port: 22
+
+#     annotations:
+#       metallb.io/allow-shared-ip: forgejo
