@@ -24,9 +24,7 @@ persistence:
 
 gitea:
   admin:
-    username: admin
-    password: change-me
-    email: admin@home.local
+    username: forgejo
 
   config:
     service:
