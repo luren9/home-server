@@ -25,7 +25,7 @@ persistence:
 gitea:
   admin:
     username: forgejo
-    password: temp-pass
+    # password is set in the application
 
   config:
     service:
