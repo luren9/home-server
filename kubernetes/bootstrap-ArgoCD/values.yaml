@@ -1,0 +1,15 @@
+server:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+
+    hostname: argocd.home
+
+    annotations:
+      cert-manager.io/cluster-issuer: my-ca-issuer
+
+    tls: true
+
+configs:
+  params:
+    server.insecure: "true"

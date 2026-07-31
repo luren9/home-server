@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+
+metadata:
+  name: metallb-config
+  namespace: argocd
+
+spec:
+  project: default
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: metallb-system
+
+  source:
+    repoURL: https://github.com/luren9/home-server.git
+    targetRevision: main
+    path: kubernetes/apps/metallb-config/manifest
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
