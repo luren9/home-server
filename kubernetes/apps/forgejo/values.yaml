@@ -25,6 +25,7 @@ persistence:
 gitea:
   admin:
     username: forgejo
+    password: temp-pass
 
   config:
     service:
