@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+
+metadata:
+  name: velero
+  namespace: argocd
+
+spec:
+  project: default
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: velero
+
+  sources:
+    - repoURL: https://vmware-tanzu.github.io/helm-charts
+      chart: velero
+      targetRevision: "11.2.0"
+
+      helm:
+        releaseName: velero
+        valueFiles:
+          - $values/kubernetes/apps/velero/values.yaml
+
+    - repoURL: https://github.com/luren9/home-server.git
+      targetRevision: main
+      ref: values
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

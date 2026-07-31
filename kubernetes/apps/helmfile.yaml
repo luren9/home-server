@@ -20,41 +20,6 @@ repositories:
 
 
 releases:
-  - name: cert-manager
-    namespace: cert-manager
-    chart: jetstack/cert-manager
-    version: v1.19.1
-    values:
-      - ./cert-manager/values.yaml
-
-
-  - name: ingress-nginx
-    namespace: ingress-nginx
-    chart: ingress-nginx/ingress-nginx
-    version: 4.14.0
-    values:
-      - ./ingress-nginx/values.yaml
-
-  - name: harbor
-    namespace: harbor
-    chart: harbor/harbor
-    version: 1.18.0
-    values:
-      - ./harbor/values.yaml
-
-  - name: cilium
-    namespace: kube-system
-    chart: cilium/cilium
-    version: 1.18.2
-    values:
-      - ./cilium/values.yaml
-
-  - name: metallb
-    namespace: metallb-system
-    chart: metallb/metallb
-    version: 0.15.2
-    values:
-      - ./metallb/values.yaml
 
   - name: metallb-config
     namespace: metallb-system

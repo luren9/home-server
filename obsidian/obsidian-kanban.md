@@ -19,6 +19,10 @@ kanban-plugin: board
 - [ ] Migrate from [[bitnamilegacy]] docker image repository. Repository is fully deprecated.
 - [ ] Add [[code-file linking]] in obsidian.
 - [ ] Improve ArgoCD security (user accounts and so on)
+- [ ] Look over this file:
+	kubernetes/apps/velero/velero-credentials-secret.yaml
+- [ ] Look over this file and add this to main README on how to bootstrap cluster:
+	kubernetes/apps/metallb/README.md
 
 
 ## To Do
