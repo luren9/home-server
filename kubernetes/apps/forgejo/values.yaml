@@ -20,7 +20,7 @@ ingress:
 
 persistence:
   enabled: true
-  size: 20Gi
+  size: 21Gi
 
 gitea:
   admin:
