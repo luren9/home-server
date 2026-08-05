@@ -1,0 +1,5 @@
+oauth:
+  existingSecret: operator-oauth
+
+apiServerProxyConfig:
+  mode: "true"
