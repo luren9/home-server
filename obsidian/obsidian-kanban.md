@@ -35,13 +35,14 @@ kanban-plugin: board
 - [ ] Give root-level `README.md` a major makeover, make it cool and explain obsidian usage.
 - [ ] Add argocd application for syncing argocd application manifests. Should maybe live in the argocd bootstrap folder.
 	Add to readme that this needs to be manually applied once on server setup
-- [ ] Setup GitLab CE or something similar - self hosted repo yes sir.
-	Then set up push-mirroring to github + description of where development is happening on github
+- [ ] Set ArgoCD to point to forgejo
+- [ ] Setup and learn [[Setup-RBAC]]
 
 
 ## In Progress
 
 - [ ] Terraform, AWS & Velero for cluster backups/disaster recovery. [[Backup-cluster]]
+- [ ] Setup [[tailscale]]
 
 
 ## Done
@@ -50,6 +51,8 @@ kanban-plugin: board
 - [x] Setup [[ArgoCD]]
 - [x] *CANCELLED (we will move away from helmfile to ArgoCD, this will fix the issue)* Fix [[cilium]] and [[harbor]] helm-version updating everytime i apply [[helmfile]]
 - [x] Move from using [[helmfile]] to argoCD to mange helm.
+- [x] Setup GitLab CE or something similar - self hosted repo yes sir.
+	Then set up push-mirroring to github + description of where development is happening on github
 
 
 
