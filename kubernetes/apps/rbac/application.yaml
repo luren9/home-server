@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rbac
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/luren9/home-server.git
+    targetRevision: main
+    path: kubernetes/apps/rbac/manifests
+
+  destination:
+    server: https://kubernetes.default.svc
