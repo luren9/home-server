@@ -6,6 +6,9 @@ subjects:
   - kind: User
     name: luren9@github
     apiGroup: rbac.authorization.k8s.io
+  - kind: User
+    name: elis.bodin@gmail.com
+    apiGroup: rbac.authorization.k8s.io
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
