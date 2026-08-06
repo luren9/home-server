@@ -1,10 +1,19 @@
 expose:
-  type: clusterIP
-
+  type: ingress
+  ingress:
+    className: nginx
+    hosts:
+      core: harbor.home
+      notary: notary.harbor.home
+    annotations:
+      cert-manager.io/cluster-issuer: "my-ca-issuer"
   tls:
-    enabled: false
+    certSource: secret
+    enabled: true
+    secret:
+      secretName: harbor-tls
 
-externalURL: https://harbor.tail9d4c9f.ts.net
+externalURL: https://harbor.home
 
 persistence:
   enabled: true

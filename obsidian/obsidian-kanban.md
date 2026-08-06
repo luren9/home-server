@@ -42,7 +42,7 @@ kanban-plugin: board
 ## In Progress
 
 - [ ] Terraform, AWS & Velero for cluster backups/disaster recovery. [[Backup-cluster]]
-- [ ] Setup [[tailscale]]
+- [ ] [[Expose HTTPS services with tailscale]]
 
 
 ## Done
