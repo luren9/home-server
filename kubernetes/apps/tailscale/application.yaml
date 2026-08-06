@@ -26,10 +26,6 @@ spec:
       targetRevision: main
       ref: values
 
-    - repoURL: https://github.com/luren9/home-server.git
-      targetRevision: main
-      path: kubernetes/apps/tailscale/manifests
-
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
